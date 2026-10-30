@@ -1,0 +1,447 @@
+@import "tailwindcss";
+
+/* ─── Light Editorial Luxury Design Tokens ────────────────────────────── */
+@theme {
+  /* Backgrounds — Alabaster & Warm Fine-Art Linen */
+  --color-bg-primary:   #faf8f5;
+  --color-bg-secondary: #f3efe6;
+  --color-bg-tertiary:  #ebe5d8;
+  --color-bg-elevated:  #ffffff;
+
+  /* Text — Obsidian Charcoal & Editorial Warm Gray */
+  --color-text-primary:   #121214;
+  --color-text-secondary: #575550;
+  --color-text-muted:     #8c8880;
+
+  /* Accent — Rich Warm Champagne & Artisan Gold */
+  --color-gold:        #b38728;
+  --color-gold-light:  #cfa847;
+  --color-gold-dark:   #91691a;
+  --color-gold-subtle: rgba(179, 135, 40, 0.09);
+
+  /* Glass — Frosted Luminous Glassmorphism */
+  --color-glass:        rgba(250, 248, 245, 0.88);
+  --color-glass-border: rgba(18, 18, 20, 0.08);
+
+  /* Typography */
+  --font-editorial: "Cormorant Garamond", Georgia, serif;
+  --font-ui:        "Inter", system-ui, sans-serif;
+
+  /* Spacing scale extras */
+  --spacing-section: 7rem;
+
+  /* Border radius */
+  --radius-pill: 9999px;
+
+  /* Transitions */
+  --ease-silk: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ─── Global Resets & Base ──────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-bg-primary);
+}
+
+body {
+  font-family: var(--font-ui);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ─── Typography Utilities ──────────────────────────────────── */
+.font-editorial { font-family: var(--font-editorial); }
+.font-ui        { font-family: var(--font-ui); }
+
+/* Wordmark */
+.wordmark {
+  font-family: var(--font-editorial);
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+}
+
+/* ─── Gold Accent Utilities ─────────────────────────────────── */
+.text-gold        { color: var(--color-gold); }
+.border-gold      { border-color: var(--color-gold); }
+.bg-gold          { background-color: var(--color-gold); }
+.bg-gold-subtle   { background-color: var(--color-gold-subtle); }
+
+/* Gold gradient text */
+.text-gold-gradient {
+  background: linear-gradient(135deg, var(--color-gold-dark) 0%, var(--color-gold) 60%, var(--color-gold-light) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─── Glassmorphism (Light Theme) ───────────────────────────── */
+.glass {
+  background: var(--color-glass);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--color-glass-border);
+}
+
+/* ─── Buttons ───────────────────────────────────────────────── */
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  background: var(--color-gold);
+  color: #ffffff !important;
+  border: 1px solid var(--color-gold);
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(179, 135, 40, 0.22);
+  transition: transform 0.25s var(--ease-silk), box-shadow 0.25s var(--ease-silk), background-color 0.25s var(--ease-silk);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gold::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-gold-dark);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s var(--ease-silk);
+  z-index: 0;
+}
+
+.btn-gold:hover::before   { transform: scaleX(1); }
+.btn-gold:hover           { color: #ffffff !important; box-shadow: 0 6px 20px rgba(179, 135, 40, 0.32); }
+.btn-gold > *             { position: relative; z-index: 1; }
+
+/* ─── Nav Link Underline Hover ──────────────────────────────── */
+.nav-link {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.25s;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--color-gold);
+  transition: width 0.35s var(--ease-silk);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--color-text-primary);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ─── Section utility ───────────────────────────────────────── */
+.section-pad {
+  padding-top: var(--spacing-section);
+  padding-bottom: var(--spacing-section);
+}
+
+/* ─── Scrollbar styling (Light Theme) ───────────────────────── */
+::-webkit-scrollbar               { width: 6px; }
+::-webkit-scrollbar-track         { background: var(--color-bg-primary); }
+::-webkit-scrollbar-thumb         { background: #dcd6c9; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover   { background: var(--color-gold); }
+
+/* ─── Lenis override ─────────────────────────────────────────── */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+
+/* ─── Glass Button (secondary CTA) ──────────────────────────── */
+.btn-glass {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  background: rgba(255, 255, 255, 0.85);
+  color: #121214;
+  border: 1px solid rgba(18, 18, 20, 0.14);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  transition: background 0.28s var(--ease-silk), border-color 0.28s var(--ease-silk), color 0.28s, box-shadow 0.28s;
+}
+.btn-glass:hover {
+  background: #ffffff;
+  border-color: var(--color-gold);
+  color: var(--color-gold-dark);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* ─── Mobile pill: visible only on touch devices ─────────────── */
+.lm-mobile-pill {
+  display: none;
+}
+@media (max-width: 767px) {
+  .lm-mobile-pill {
+    display: block;
+  }
+}
+
+/* ─── Hero section ───────────────────────────────────────────── */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(14, 18, 22, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 0.375rem 1.1rem;
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #ffd875;
+  margin-bottom: 2rem;
+}
+.hero-badge::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: #ffd875;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ffd875;
+}
+
+/* ─── Luxury Section Divider Enhancement ─────────────────────── */
+.section-divider-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+  background: transparent;
+  overflow: hidden;
+}
+
+.section-divider-line {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(18, 18, 20, 0.05) 15%,
+    rgba(179, 135, 40, 0.35) 50%,
+    rgba(18, 18, 20, 0.05) 85%,
+    transparent 100%
+  );
+  z-index: 1;
+}
+
+.section-divider-badge {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.4rem 1.25rem;
+  background: #ffffff;
+  border: 1px solid rgba(179, 135, 40, 0.3);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  border-radius: 9999px;
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-gold-dark);
+}
+
+.section-divider-badge .emblem {
+  color: var(--color-gold);
+  font-size: 0.75rem;
+}
+
+/* ─── Social Icon Wrap (Light Theme) ─────────────────────────── */
+.social-icon-wrap {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(18, 18, 20, 0.12);
+  background: #ffffff;
+  color: var(--color-text-secondary);
+  border-radius: 4px;
+  transition: all 0.25s var(--ease-silk);
+  flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+}
+
+.social-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.group:hover .social-icon-wrap {
+  border-color: var(--color-gold);
+  background: var(--color-gold-subtle);
+  color: var(--color-gold-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(179, 135, 40, 0.15);
+}
+
+/* ─── Creative Optical Aperture Brand Glyph ──────────────────── */
+.brand-aperture-symbol {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(179, 135, 40, 0.15) 0%, rgba(250, 248, 245, 0.6) 80%);
+  border: 1px solid rgba(179, 135, 40, 0.45);
+  box-shadow: 0 2px 10px rgba(179, 135, 40, 0.14);
+  transition: transform 0.4s var(--ease-silk), border-color 0.3s ease, box-shadow 0.3s ease;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.brand-aperture-svg {
+  width: 1.55rem;
+  height: 1.55rem;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.group:hover .brand-aperture-symbol,
+a:hover .brand-aperture-symbol {
+  transform: scale(1.05);
+  border-color: var(--color-gold);
+  box-shadow: 0 4px 16px rgba(179, 135, 40, 0.28);
+}
+
+.group:hover .brand-aperture-svg,
+a:hover .brand-aperture-svg {
+  transform: rotate(45deg);
+}
+
+/* ─── Studio Portal Trigger Button (Navbar / Footer) ─────────── */
+.btn-studio-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
+  background: #ffffff;
+  border: 1px solid rgba(179, 135, 40, 0.35);
+  border-radius: 9999px;
+  color: #575550;
+  font-family: var(--font-ui);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s var(--ease-silk);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.btn-studio-trigger:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold-dark);
+  background: #faf8f5;
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 12px rgba(179, 135, 40, 0.16);
+}
+
+/* ─── Unique High-End Editorial Button ───────────────────────── */
+.btn-unique {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1.75rem;
+  background: linear-gradient(135deg, #1e1e24 0%, #121214 100%);
+  color: #ffffff !important;
+  border: 1px solid rgba(179, 135, 40, 0.45);
+  border-radius: 2px;
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transition: transform 0.25s var(--ease-silk), box-shadow 0.25s var(--ease-silk), border-color 0.25s;
+}
+
+.btn-unique::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 216, 117, 0.28) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  transition: transform 0.6s ease;
+  pointer-events: none;
+}
+
+.btn-unique:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-gold);
+  box-shadow: 0 8px 24px rgba(179, 135, 40, 0.22);
+}
+
+.btn-unique:hover::after {
+  transform: translateX(360%) rotate(25deg);
+}

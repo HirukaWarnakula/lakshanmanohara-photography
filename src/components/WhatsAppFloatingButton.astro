@@ -1,0 +1,134 @@
+---
+/**
+ * WhatsAppFloatingButton.astro
+ *
+ * Persistent bottom-right floating WhatsApp button with subtle pulse animation.
+ * Raw parameter: 94788240084
+ * Strictly opens with target="_blank" rel="noopener noreferrer"
+ */
+const whatsappNumber = '94788240084';
+const prefilledMessage = encodeURIComponent(
+  'Hi Lakshan! I visited your website and would like to inquire about a photoshoot.'
+);
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${prefilledMessage}`;
+---
+
+<a
+  href={whatsappUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  id="floating-whatsapp-btn"
+  aria-label="Chat directly with Lakshan Manohara on WhatsApp"
+  class="whatsapp-fab group"
+>
+  <!-- Pulsing radial wave -->
+  <span class="whatsapp-ping" aria-hidden="true"></span>
+
+  <!-- Tooltip on hover -->
+  <span class="whatsapp-tooltip font-ui">
+    Chat with Lakshan
+  </span>
+
+  <!-- WhatsApp Icon SVG -->
+  <svg
+    class="whatsapp-icon"
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+  >
+    <path
+      d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"
+    ></path>
+  </svg>
+</a>
+
+<style>
+  .whatsapp-fab {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 999;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    background-color: #25d366;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+      box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    text-decoration: none;
+  }
+
+  .whatsapp-fab:hover {
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: 0 8px 28px rgba(37, 211, 102, 0.6);
+  }
+
+  .whatsapp-ping {
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 2px solid #25d366;
+    animation: whatsappPingAnim 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+    pointer-events: none;
+    opacity: 0.75;
+  }
+
+  @keyframes whatsappPingAnim {
+    0% {
+      transform: scale(0.95);
+      opacity: 0.8;
+    }
+    70%,
+    100% {
+      transform: scale(1.4);
+      opacity: 0;
+    }
+  }
+
+  .whatsapp-icon {
+    width: 1.85rem;
+    height: 1.85rem;
+  }
+
+  .whatsapp-tooltip {
+    position: absolute;
+    right: calc(100% + 0.85rem);
+    top: 50%;
+    transform: translateY(-50%) translateX(10px);
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(179, 135, 40, 0.35);
+    color: #121214;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 0.35rem 0.75rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  }
+
+  .whatsapp-fab:hover .whatsapp-tooltip {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+
+  @media (max-width: 640px) {
+    .whatsapp-fab {
+      bottom: 1.25rem;
+      right: 1.25rem;
+      width: 3.25rem;
+      height: 3.25rem;
+    }
+    .whatsapp-tooltip {
+      display: none;
+    }
+  }
+</style>

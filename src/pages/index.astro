@@ -1,0 +1,295 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PortfolioSection from '../components/PortfolioSection';
+import ClientStoriesSection from '../components/ClientStoriesSection';
+import AboutSection from '../components/AboutSection.astro';
+import BookingSection from '../components/BookingSection';
+import SectionDivider from '../components/SectionDivider.astro';
+---
+
+<Layout
+  title="Lakshan Manohara Photography | Timeless Visual Stories — Sri Lanka"
+  description="Lakshan Manohara Photography — bespoke wedding & homecoming coverage, honours convocation & graduation portraits, birthday & milestone shoots, and couple stories across Sri Lanka."
+>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       EDITORIAL HERO SECTION
+  ════════════════════════════════════════════════════════════════════ -->
+  <section
+    id="hero"
+    aria-label="Hero — Lakshan Manohara Photography"
+    style="
+      position: relative;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background-color: #0d1117;
+    "
+  >
+
+    <!-- Parallax background image (Official default background image) -->
+    <div
+      style="position: absolute; inset: 0; overflow: hidden;"
+      aria-hidden="true"
+    >
+      <img
+        id="hero-bg"
+        src="/hero-bg.jpg"
+        alt="Lakshan Manohara Photography — Sunset Coastal Story"
+        fetchpriority="high"
+        width="1920"
+        height="1280"
+        style="
+          width: 100%;
+          height: 130%;
+          object-fit: cover;
+          object-position: center 25%;
+          will-change: transform;
+          transform-origin: center top;
+        "
+      />
+    </div>
+
+    <!-- Multi-layer gradient overlay: Cinema depth on top/left, luxury blend to light theme at bottom -->
+    <div
+      aria-hidden="true"
+      style="
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(to right,
+            rgba(8, 12, 16, 0.94) 0%,
+            rgba(8, 12, 16, 0.78) 42%,
+            rgba(8, 12, 16, 0.35) 75%,
+            rgba(8, 12, 16, 0.15) 100%),
+          linear-gradient(to top,
+            #faf8f5 0%,
+            rgba(250, 248, 245, 0.92) 5%,
+            rgba(8, 12, 16, 0.5) 25%,
+            transparent 55%);
+      "
+    ></div>
+
+    <!-- Subtle warm radial glow -->
+    <div
+      aria-hidden="true"
+      style="
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse 55% 70% at 20% 50%, rgba(212,175,55,0.08) 0%, transparent 70%);
+        pointer-events: none;
+      "
+    ></div>
+
+    <!-- ── Hero Content ── -->
+    <div
+      style="
+        position: relative;
+        z-index: 10;
+        max-width: 1280px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 7rem 1.5rem 6rem;
+        display: flex;
+        align-items: center;
+      "
+    >
+      <div style="max-width: 650px;">
+
+        <!-- Refined brand badge -->
+        <div class="hero-badge" id="hero-badge">
+          Lakshan Manohara Photography &bull; Sri Lanka
+        </div>
+
+        <!-- Editorial headline — Cormorant Garamond -->
+        <h1
+          class="font-editorial"
+          id="hero-headline"
+          style="
+            font-size: clamp(2.6rem, 6.5vw, 5.5rem);
+            font-weight: 300;
+            line-height: 1.06;
+            letter-spacing: -0.01em;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+          "
+        >
+          Turning Fleeting Moments<br />
+          into Timeless<br />
+          <em class="text-gold-gradient" style="font-style: italic;">Visual Stories.</em>
+        </h1>
+
+        <!-- Sub-headline -->
+        <p
+          class="font-ui"
+          id="hero-subheadline"
+          style="
+            font-size: clamp(0.88rem, 1.4vw, 1rem);
+            font-weight: 300;
+            line-height: 1.8;
+            color: #e5e5e7;
+            max-width: 500px;
+            margin-bottom: 2.5rem;
+            text-shadow: 0 1px 10px rgba(0,0,0,0.3);
+          "
+        >
+          Bespoke Wedding &amp; Homecoming Coverage, Honours Convocation
+          &amp; Graduation Portraits, Birthday &amp; Milestone Shoots,
+          and Couple Stories across Sri Lanka.
+        </p>
+
+        <!-- CTA buttons -->
+        <div
+          style="
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+          "
+          id="hero-cta-group"
+        >
+          <!-- Primary: gold button scrolls to gallery -->
+          <a href="#portfolio" class="btn-gold" id="hero-cta-portfolio">
+            <span>Explore Portfolio</span>
+          </a>
+
+          <!-- Secondary: glass button scrolls to booking form -->
+          <a href="#contact" class="btn-glass" id="hero-cta-book">
+            <span>Reserve Your Date</span>
+          </a>
+        </div>
+
+        <!-- Subtle metrics strip -->
+        <div
+          style="
+            display: flex;
+            gap: 2.25rem;
+            margin-top: 3.5rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+          "
+          id="hero-stats"
+        >
+          {[
+            { n: '600+', label: 'Sessions Shot' },
+            { n: '6+', label: 'Years of Craft' },
+            { n: '5', label: 'Shoot Categories' },
+          ].map((s) => (
+            <div>
+              <p class="font-editorial" style="font-size: 1.7rem; font-weight: 300; color: #ffd875; line-height: 1; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">
+                {s.n}
+              </p>
+              <p class="font-ui" style="font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase; color: #d0d0d5; margin-top: 0.25rem;">
+                {s.label}
+              </p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div
+      aria-hidden="true"
+      style="
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        z-index: 10;
+      "
+      id="hero-scroll"
+    >
+      <span
+        class="font-ui"
+        style="
+          font-size: 0.58rem;
+          letter-spacing: 0.28em;
+          text-transform: uppercase;
+          color: var(--color-gold-dark);
+          font-weight: 600;
+        "
+      >Scroll</span>
+      <div
+        style="
+          width: 1.5px;
+          height: 48px;
+          background: linear-gradient(to bottom, var(--color-gold), transparent);
+          animation: heroScrollPulse 2.2s ease-in-out infinite;
+        "
+      ></div>
+    </div>
+
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       SECTION 01: CURATED PORTFOLIO (#portfolio)
+  ════════════════════════════════════════════════════════════════════ -->
+  <SectionDivider
+    number="01"
+    label="CURATED PORTFOLIO"
+    title="Selected Works & Moments"
+    background="#faf8f5"
+  />
+  <PortfolioSection client:load />
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       SECTION 02: CLIENT STORIES & ALBUMS (#client-stories)
+  ════════════════════════════════════════════════════════════════════ -->
+  <SectionDivider
+    number="02"
+    label="CLIENT STORIES"
+    title="Full Feature Shoots"
+    background="#f3efe6"
+  />
+  <ClientStoriesSection client:load />
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       SECTION 03: ABOUT THE ARTIST (#about)
+  ════════════════════════════════════════════════════════════════════ -->
+  <AboutSection />
+
+  <!-- ════════════════════════════════════════════════════════════════════
+       SECTION 04: CONTACT & COMMISSIONS (#contact)
+  ════════════════════════════════════════════════════════════════════ -->
+  <BookingSection client:load />
+
+</Layout>
+
+<!-- ── Styles ────────────────────────────────────────────────────────── -->
+<style>
+  @keyframes heroScrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50%       { opacity: 1;   transform: scaleY(0.8); }
+  }
+</style>
+
+<!-- ── Hero parallax ─────────────────────────────────────────────────── -->
+<script>
+  (function () {
+    const heroBg = document.getElementById('hero-bg') as HTMLImageElement | null;
+
+    function applyParallax(scrollY: number) {
+      if (heroBg) {
+        heroBg.style.transform = `translateY(${scrollY * 0.32}px)`;
+      }
+    }
+
+    const waitForLenis = setInterval(() => {
+      const lenis = (window as any).__lenis;
+      if (lenis) {
+        clearInterval(waitForLenis);
+        lenis.on('scroll', ({ scroll }: { scroll: number }) => applyParallax(scroll));
+      }
+    }, 60);
+
+    window.addEventListener('scroll', () => applyParallax(window.scrollY), { passive: true });
+  })();
+</script>

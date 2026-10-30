@@ -1,0 +1,535 @@
+---
+/**
+ * AboutSection.astro
+ *
+ * "Behind the Lens — Meet Lakshan Manohara" (#about)
+ * Highlights his storytelling philosophy, calm direction, gear standards, and direct social cards.
+ */
+---
+
+<section
+  id="about"
+  class="about-full-section"
+  style="
+    background-color: #faf8f5;
+    border-top: 1px solid rgba(18, 18, 20, 0.06);
+    border-bottom: 1px solid rgba(18, 18, 20, 0.06);
+    position: relative;
+    overflow: hidden;
+  "
+>
+  <!-- Subtle ambient glow -->
+  <div
+    aria-hidden="true"
+    style="
+      position: absolute;
+      top: 20%;
+      right: 5%;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(179, 135, 40, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    "
+  ></div>
+
+  <div style="max-width: 1320px; margin: 0 auto; width: 100%;">
+    <div
+      class="about-main-grid"
+      style="
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 3rem;
+        align-items: stretch;
+      "
+    >
+      <!-- Left Column: Large Full-Section Portrait -->
+      <div
+        class="about-portrait-col"
+        style="
+          position: relative;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+        "
+      >
+        <div
+          class="about-portrait-frame"
+          style="
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 460px;
+            overflow: hidden;
+            border: 1px solid rgba(179, 135, 40, 0.35);
+            background-color: #f3efe6;
+            box-shadow: 0 16px 44px rgba(0, 0, 0, 0.08);
+            border-radius: 4px;
+            display: flex;
+          "
+        >
+          <img
+            id="about-portrait-img"
+            src="/lakshan-manohara-about.jpg"
+            alt="Lakshan Manohara — Professional Photographer & Visual Storyteller"
+            loading="lazy"
+            style="
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: center 12%;
+              filter: contrast(1.04) brightness(0.97);
+              transition: transform 0.8s ease;
+            "
+          />
+
+          <!-- Secret Camera Lens Hotspot Trigger (Invisible to public visitors) -->
+          <a
+            href="/studio"
+            id="secret-lens-trigger"
+            aria-label="Studio Lens"
+            style="
+              position: absolute;
+              top: 45%;
+              left: 43%;
+              transform: translate(-50%, -50%);
+              width: 110px;
+              height: 110px;
+              border-radius: 50%;
+              background: transparent;
+              cursor: pointer;
+              z-index: 10;
+              outline: none;
+              text-decoration: none;
+              display: block;
+              -webkit-tap-highlight-color: transparent;
+            "
+          >
+            <span class="lens-glint" aria-hidden="true"></span>
+          </a>
+
+          <!-- Editorial caption overlay -->
+          <div
+            style="
+              position: absolute;
+              bottom: 0;
+              inset-inline: 0;
+              padding: 1.5rem 1.5rem;
+              background: linear-gradient(to top, rgba(14, 14, 16, 0.94) 0%, rgba(14, 14, 16, 0.4) 60%, transparent 100%);
+            "
+          >
+            <div>
+              <p
+                id="about-portrait-name"
+                class="font-editorial"
+                style="font-size: 1.45rem; color: #ffffff; font-weight: 400; text-shadow: 0 1px 4px rgba(0,0,0,0.4);"
+              >
+                Lakshan Manohara
+              </p>
+              <p
+                id="about-portrait-title"
+                class="font-ui"
+                style="font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: #ffd875; font-weight: 600;"
+              >
+                Lead Visual Storyteller &bull; Sri Lanka
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decorative frame offset -->
+        <div
+          aria-hidden="true"
+          style="
+            position: absolute;
+            inset: -8px;
+            border: 1px solid rgba(179, 135, 40, 0.2);
+            pointer-events: none;
+            z-index: -1;
+            border-radius: 6px;
+          "
+        ></div>
+      </div>
+
+      <!-- Right Column: Narrative, Gear & Socials -->
+      <div class="about-content-col" style="display: flex; flex-direction: column; justify-content: center;">
+        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.4rem;">
+          <span style="color: #b38728; font-size: 0.75rem;">✦</span>
+          <p
+            class="font-ui"
+            style="
+              font-size: 0.65rem;
+              font-weight: 600;
+              letter-spacing: 0.28em;
+              text-transform: uppercase;
+              color: #b38728;
+            "
+          >
+            03 &bull; Behind The Lens
+          </p>
+        </div>
+
+        <h2
+          class="font-editorial"
+          style="
+            font-size: clamp(2rem, 3.2vw, 2.85rem);
+            font-weight: 300;
+            color: #121214;
+            line-height: 1.1;
+            margin-bottom: 0.85rem;
+          "
+        >
+          Meet Lakshan Manohara
+        </h2>
+
+        <p
+          class="font-ui"
+          style="
+            font-size: 0.88rem;
+            color: #575550;
+            line-height: 1.68;
+            margin-bottom: 0.7rem;
+          "
+        >
+          A passionate visual storyteller dedicated to capturing natural expressions, genuine chemistry, and timeless color tones. With years of refined behind-the-lens experience across Sri Lanka, Lakshan believes the most striking photographs emerge when you are free to simply be yourself.
+        </p>
+
+        <p
+          class="font-ui"
+          style="
+            font-size: 0.84rem;
+            color: #575550;
+            line-height: 1.68;
+            margin-bottom: 1.1rem;
+          "
+        >
+          Known for his calm, supportive direction that puts clients effortlessly at ease during high-stakes milestones like convocations, weddings, and milestone birthday shoots. Every session is conducted with patience, warmth, and attention to light.
+        </p>
+
+        <!-- Slogan banner -->
+        <blockquote
+          style="
+            border-left: 2px solid #b38728;
+            padding-left: 1rem;
+            margin-bottom: 1.25rem;
+          "
+        >
+          <p
+            class="font-editorial italic"
+            style="font-size: 1.15rem; color: #121214; font-weight: 400;"
+          >
+            "Beyond photos, we preserve the moments that matter."
+          </p>
+        </blockquote>
+
+        <!-- Gear Badges -->
+        <div style="margin-bottom: 1.25rem;">
+          <p
+            class="font-ui"
+            style="
+              font-size: 0.6rem;
+              letter-spacing: 0.18em;
+              text-transform: uppercase;
+              color: #8c8880;
+              margin-bottom: 0.5rem;
+              font-weight: 600;
+            "
+          >
+            Craft &amp; Equipment Standards
+          </p>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+            {[
+              'High-Resolution Full-Frame Bodies',
+              '85mm & 35mm Prime Lenses',
+              'Professional Off-Camera Lighting',
+            ].map((gear) => (
+              <span
+                style="
+                  display: inline-flex;
+                  align-items: center;
+                  gap: 0.4rem;
+                  padding: 0.35rem 0.75rem;
+                  background-color: #ffffff;
+                  border: 1px solid rgba(179, 135, 40, 0.28);
+                  border-radius: 2px;
+                  font-family: 'Inter', sans-serif;
+                  font-size: 0.7rem;
+                  font-weight: 500;
+                  color: #121214;
+                  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+                "
+              >
+                <span style="color: #b38728; font-size: 0.65rem;">✦</span> {gear}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Social Strip Cards -->
+        <div>
+          <p
+            class="font-ui"
+            style="
+              font-size: 0.6rem;
+              letter-spacing: 0.18em;
+              text-transform: uppercase;
+              color: #8c8880;
+              margin-bottom: 0.5rem;
+              font-weight: 600;
+            "
+          >
+            Official Social Channels
+          </p>
+
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+              gap: 0.65rem;
+            "
+          >
+            <!-- Facebook Card -->
+            <a
+              href="https://www.facebook.com/share/1CJCGZ7HQ4/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="about-social-card"
+              id="about-social-facebook"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                padding: 0.65rem 0.85rem;
+                background-color: #ffffff;
+                border: 1px solid rgba(18, 18, 20, 0.08);
+                border-radius: 2px;
+                text-decoration: none;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+                transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
+              "
+            >
+              <div
+                style="
+                  width: 2rem;
+                  height: 2rem;
+                  border-radius: 4px;
+                  background-color: rgba(179, 135, 40, 0.1);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: #b38728;
+                  flex-shrink: 0;
+                "
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-ui" style="font-size: 0.75rem; font-weight: 600; color: #121214;">
+                  Facebook Page
+                </p>
+                <p class="font-ui" style="font-size: 0.6rem; color: #8c8880;">
+                  @LakshanManohara &rarr;
+                </p>
+              </div>
+            </a>
+
+            <!-- TikTok Card -->
+            <a
+              href="https://www.tiktok.com/@lakshan.manohara6?_r=1&_t=ZS-9Amln32EMmD"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="about-social-card"
+              id="about-social-tiktok"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                padding: 0.65rem 0.85rem;
+                background-color: #ffffff;
+                border: 1px solid rgba(18, 18, 20, 0.08);
+                border-radius: 2px;
+                text-decoration: none;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+                transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
+              "
+            >
+              <div
+                style="
+                  width: 2rem;
+                  height: 2rem;
+                  border-radius: 4px;
+                  background-color: rgba(179, 135, 40, 0.1);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: #b38728;
+                  flex-shrink: 0;
+                "
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-ui" style="font-size: 0.75rem; font-weight: 600; color: #121214;">
+                  TikTok Profile
+                </p>
+                <p class="font-ui" style="font-size: 0.6rem; color: #8c8880;">
+                  @lakshan.manohara6 &rarr;
+                </p>
+              </div>
+            </a>
+
+            <!-- Instagram Card -->
+            <a
+              href="https://www.instagram.com/lakshan.manohara6/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="about-social-card"
+              id="about-social-instagram"
+              style="
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                padding: 0.65rem 0.85rem;
+                background-color: #ffffff;
+                border: 1px solid rgba(18, 18, 20, 0.08);
+                border-radius: 2px;
+                text-decoration: none;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+                transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
+              "
+            >
+              <div
+                style="
+                  width: 2rem;
+                  height: 2rem;
+                  border-radius: 4px;
+                  background-color: rgba(179, 135, 40, 0.1);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: #b38728;
+                  flex-shrink: 0;
+                "
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-ui" style="font-size: 0.75rem; font-weight: 600; color: #121214;">
+                  Instagram Profile
+                </p>
+                <p class="font-ui" style="font-size: 0.6rem; color: #8c8880;">
+                  @lakshan.manohara6 &rarr;
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-full-section {
+    padding: 3rem 1.5rem;
+    min-height: calc(100vh - 4rem);
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  @media (min-width: 1024px) {
+    .about-full-section {
+      padding: 1.5rem 2rem;
+      min-height: calc(100vh - 4rem);
+      max-height: calc(100vh - 4rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+
+    .about-main-grid {
+      grid-template-columns: minmax(360px, 1fr) minmax(440px, 1.25fr) !important;
+      gap: 3.25rem !important;
+      align-items: center !important;
+      width: 100% !important;
+    }
+
+    .about-portrait-col {
+      width: 100% !important;
+      max-height: min(72vh, 560px) !important;
+    }
+
+    .about-portrait-frame {
+      max-height: min(72vh, 560px) !important;
+      min-height: 460px !important;
+    }
+
+    .about-content-col {
+      max-height: min(76vh, 580px) !important;
+      overflow: visible !important;
+    }
+  }
+
+  .about-social-card:hover {
+    border-color: #b38728 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(179, 135, 40, 0.12) !important;
+  }
+
+  .lens-glint {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.22) 0%, rgba(212, 175, 55, 0.16) 45%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  #secret-lens-trigger:hover .lens-glint {
+    opacity: 0.9;
+  }
+</style>
+
+<script>
+  import { getStoredAboutProfile, UPDATE_EVENT_NAME } from '../utils/studioStore';
+
+  function syncAboutProfile() {
+    const profile = getStoredAboutProfile();
+    const imgEl = document.getElementById('about-portrait-img') as HTMLImageElement | null;
+    const nameEl = document.getElementById('about-portrait-name');
+    const titleEl = document.getElementById('about-portrait-title');
+
+    if (imgEl && profile.photoSrc) {
+      imgEl.src = profile.photoSrc;
+    }
+    if (nameEl && profile.name) {
+      nameEl.textContent = profile.name;
+    }
+    if (titleEl && profile.title) {
+      titleEl.textContent = profile.title;
+    }
+  }
+
+  // Initial sync & listen for Studio changes
+  syncAboutProfile();
+  window.addEventListener(UPDATE_EVENT_NAME, syncAboutProfile);
+
+  // Camera lens secret trigger: opens Studio Manager drawer smoothly
+  document.getElementById('secret-lens-trigger')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.dispatchEvent(new CustomEvent('open-studio-manager'));
+  });
+</script>

@@ -1,0 +1,514 @@
+---
+// src/layouts/Layout.astro
+import '../styles/global.css';
+import WhatsAppFloatingButton from '../components/WhatsAppFloatingButton.astro';
+import StudioManager from '../components/StudioManager';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title = 'Lakshan Manohara Photography | Timeless Visual Stories — Sri Lanka',
+  description = 'Lakshan Manohara Photography — bespoke wedding & homecoming coverage, honours convocation & graduation portraits, birthday & milestone shoots, and couple stories across Sri Lanka.',
+  ogImage = '/og-image.jpg',
+  canonicalUrl = Astro.url.href,
+} = Astro.props;
+
+const siteName = 'Lakshan Manohara Photography';
+---
+
+<!doctype html>
+<html lang="en" class="lenis">
+  <head>
+    <!-- Core meta -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Google Fonts — preconnect for performance, then load stylesheet -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap"
+    />
+
+    <!-- Primary SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#faf8f5" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Structured Data — Photography business -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "PhotographyBusiness",
+        "name": "Lakshan Manohara Photography",
+        "slogan": "Beyond photos, we preserve the moments that matter.",
+        "description": "High-end commercial, convocation, wedding and portrait photography across Sri Lanka.",
+        "telephone": "+94788240084",
+        "url": "https://lakshanmanohara.com",
+        "sameAs": [
+          "https://www.facebook.com/share/1CJCGZ7HQ4/",
+          "https://www.tiktok.com/@lakshan.manohara6?_r=1&_t=ZS-9Amln32EMmD",
+          "https://www.instagram.com/lakshan.manohara6/"
+        ]
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- ── Sticky Glassmorphism Header ── -->
+    <header id="main-nav" class="glass fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+      <nav
+        class="max-w-screen-xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between"
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        <!-- Left: Creative Aperture Brandmark + "LAKSHAN MANOHARA PHOTOGRAPHY" -->
+        <a href="#hero" class="flex items-center gap-3 shrink-0 group" aria-label="Lakshan Manohara Photography — Home">
+          <span class="brand-aperture-symbol" aria-hidden="true">
+            <svg class="brand-aperture-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="20" cy="20" r="18.5" stroke="#b38728" stroke-width="1.2" stroke-opacity="0.5" />
+              <circle cx="20" cy="20" r="14" stroke="#b38728" stroke-dasharray="2 3" stroke-width="1" stroke-opacity="0.4" />
+              <!-- Optical aperture blades -->
+              <path d="M20 5 L28 15 L22 22 Z" fill="#b38728" fill-opacity="0.8" />
+              <path d="M35 20 L25 28 L18 22 Z" fill="#b38728" fill-opacity="0.85" />
+              <path d="M20 35 L12 25 L18 18 Z" fill="#b38728" fill-opacity="0.8" />
+              <path d="M5 20 L15 12 L22 18 Z" fill="#b38728" fill-opacity="0.85" />
+              <circle cx="20" cy="20" r="3.2" fill="#faf8f5" stroke="#b38728" stroke-width="1.2" />
+            </svg>
+          </span>
+          <span class="wordmark text-sm tracking-[0.2em]">
+            <span style="font-family: var(--font-editorial); font-weight: 400; font-size: 1.05rem; letter-spacing: 0.14em; color: var(--color-text-primary);">Lakshan Manohara</span> <span class="text-gold" style="font-family: var(--font-ui); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.28em;">PHOTOGRAPHY</span>
+          </span>
+        </a>
+
+        <!-- Center Links -->
+        <ul class="hidden lg:flex items-center gap-8 list-none" role="list">
+          <li><a href="#portfolio" class="nav-link" id="nav-portfolio">Portfolio</a></li>
+          <li><a href="#client-stories" class="nav-link" id="nav-stories">Client Stories</a></li>
+          <li><a href="#about" class="nav-link" id="nav-about">About</a></li>
+          <li><a href="#contact" class="nav-link" id="nav-contact">Contact</a></li>
+        </ul>
+
+        <!-- Right: Unique 'Book a Shoot' CTA + Discreet Studio Aperture Button -->
+        <div class="hidden md:flex items-center gap-3">
+          <a href="#contact" class="btn-unique" id="nav-book-cta">
+            <span>Book a Shoot</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+
+          <!-- Subtle Photography Aperture Trigger (Discreet to public clients) -->
+          <button
+            type="button"
+            id="nav-studio-btn"
+            class="nav-studio-trigger"
+            aria-label="Studio Portal"
+            title="Studio Portal (Alt+P)"
+          >
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="m14.31 8 5.74 9.94"></path>
+              <path d="M9.69 8h11.48"></path>
+              <path d="m7.38 12 5.74-9.94"></path>
+              <path d="M9.69 16 3.95 6.06"></path>
+              <path d="M14.31 16H2.83"></path>
+              <path d="m16.62 12-5.74 9.94"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile hamburger -->
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden flex flex-col gap-1.5 p-2 group"
+          aria-label="Toggle mobile menu"
+          aria-expanded="false"
+        >
+          <span class="w-5 h-px bg-[#121214] block transition-all duration-300 group-aria-expanded:rotate-45 group-aria-expanded:translate-y-2"></span>
+          <span class="w-5 h-px bg-[#121214] block transition-all duration-300 group-aria-expanded:opacity-0"></span>
+          <span class="w-5 h-px bg-[#121214] block transition-all duration-300 group-aria-expanded:-rotate-45 group-aria-expanded:-translate-y-2"></span>
+        </button>
+      </nav>
+
+      <!-- Mobile menu drawer -->
+      <div
+        id="mobile-menu"
+        class="md:hidden overflow-hidden max-h-0 transition-[max-height] duration-500 ease-in-out bg-[#faf8f5]"
+        aria-hidden="true"
+      >
+        <div class="px-6 pb-6 flex flex-col gap-4 border-t border-black/5 pt-4">
+          <a href="#portfolio" class="nav-link text-base mobile-link" id="mobile-nav-portfolio">Portfolio</a>
+          <a href="#client-stories" class="nav-link text-base mobile-link" id="mobile-nav-stories">Client Stories</a>
+          <a href="#about" class="nav-link text-base mobile-link" id="mobile-nav-about">About</a>
+          <a href="#contact" class="nav-link text-base mobile-link" id="mobile-nav-contact">Contact</a>
+          <a href="#contact" class="btn-unique self-start mt-1 mobile-link" id="mobile-nav-book-cta">
+            <span>Book a Shoot &rarr;</span>
+          </a>
+
+          <!-- Discreet Mobile Studio Access link -->
+          <div class="pt-3 mt-1 border-t border-black/5 flex items-center justify-between">
+            <span class="text-[11px] text-[#8c8880]/60">Lakshan Manohara Studio</span>
+            <button
+              type="button"
+              id="mobile-studio-btn"
+              class="text-[11px] text-[#8c8880] hover:text-[#b38728] flex items-center gap-1.5 transition-colors py-1 px-1.5 cursor-pointer"
+              aria-label="Studio Access"
+            >
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="m14.31 8 5.74 9.94"/>
+                <path d="M9.69 8h11.48"/>
+                <path d="m7.38 12 5.74-9.94"/>
+              </svg>
+              <span>Studio Access</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ── Page Content ── -->
+    <main>
+      <slot />
+    </main>
+
+    <!-- ── Persistent WhatsApp Floating CTA ── -->
+    <WhatsAppFloatingButton />
+
+    <!-- ── Footer ── -->
+    <footer class="border-t border-black/5 bg-[#f3efe6]">
+      <div class="max-w-screen-xl mx-auto px-6 md:px-10 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+          <!-- Brand column -->
+          <div class="flex flex-col gap-4">
+            <a href="#hero" class="flex items-center gap-3 group">
+              <span class="brand-aperture-symbol" aria-hidden="true">
+                <svg class="brand-aperture-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="20" cy="20" r="18.5" stroke="#b38728" stroke-width="1.2" stroke-opacity="0.5" />
+                  <circle cx="20" cy="20" r="14" stroke="#b38728" stroke-dasharray="2 3" stroke-width="1" stroke-opacity="0.4" />
+                  <path d="M20 5 L28 15 L22 22 Z" fill="#b38728" fill-opacity="0.8" />
+                  <path d="M35 20 L25 28 L18 22 Z" fill="#b38728" fill-opacity="0.85" />
+                  <path d="M20 35 L12 25 L18 18 Z" fill="#b38728" fill-opacity="0.8" />
+                  <path d="M5 20 L15 12 L22 18 Z" fill="#b38728" fill-opacity="0.85" />
+                  <circle cx="20" cy="20" r="3.2" fill="#faf8f5" stroke="#b38728" stroke-width="1.2" />
+                </svg>
+              </span>
+              <span class="wordmark" style="display: block;">
+                <span style="font-family: var(--font-editorial); font-weight: 400; font-size: 1.05rem; letter-spacing: 0.14em; color: var(--color-text-primary);">Lakshan Manohara</span> <span class="text-gold" style="font-family: var(--font-ui); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.28em;">PHOTOGRAPHY</span>
+              </span>
+            </a>
+            <p class="font-editorial text-lg italic" style="color: var(--color-text-secondary);">
+              "Beyond photos, we preserve the moments that matter."
+            </p>
+            <p class="text-xs leading-relaxed" style="color: var(--color-text-secondary);">
+              Bespoke wedding &amp; homecoming coverage, honours convocation &amp; graduation portraits, birthday shoots, and couple stories across Sri Lanka.
+            </p>
+            <div class="pt-1">
+              <span class="text-xs font-mono font-semibold" style="color: var(--color-gold-dark);">
+                WhatsApp: +94 78 824 0084
+              </span>
+            </div>
+          </div>
+
+          <!-- Quick Navigation Links -->
+          <div class="flex flex-col gap-4">
+            <h3 class="font-ui text-xs font-bold tracking-[0.2em] uppercase" style="color: var(--color-gold-dark);">
+              Navigation
+            </h3>
+            <nav aria-label="Footer navigation">
+              <ul class="flex flex-col gap-3 list-none">
+                <li><a href="#portfolio" class="nav-link text-sm" id="footer-nav-portfolio">Portfolio</a></li>
+                <li><a href="#client-stories" class="nav-link text-sm" id="footer-nav-stories">Client Stories</a></li>
+                <li><a href="#about" class="nav-link text-sm" id="footer-nav-about">About Lakshan</a></li>
+                <li><a href="#contact" class="nav-link text-sm" id="footer-nav-contact">Book a Shoot</a></li>
+              </ul>
+            </nav>
+          </div>
+
+          <!-- Official Social & Connect Links -->
+          <div class="flex flex-col gap-4">
+            <h3 class="font-ui text-xs font-bold tracking-[0.2em] uppercase" style="color: var(--color-gold-dark);">
+              Official Connect
+            </h3>
+            <div class="flex flex-col gap-3">
+              <!-- Facebook Page -->
+              <a
+                href="https://www.facebook.com/share/1CJCGZ7HQ4/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-3 group"
+                id="footer-facebook"
+                aria-label="Lakshan Manohara Photography on Facebook"
+              >
+                <span class="social-icon-wrap">
+                  <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                  </svg>
+                </span>
+                <span class="nav-link text-sm group-hover:text-[#121214]">Facebook Page</span>
+              </a>
+
+              <!-- TikTok Profile -->
+              <a
+                href="https://www.tiktok.com/@lakshan.manohara6?_r=1&_t=ZS-9Amln32EMmD"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-3 group"
+                id="footer-tiktok"
+                aria-label="Lakshan Manohara on TikTok"
+              >
+                <span class="social-icon-wrap">
+                  <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+                  </svg>
+                </span>
+                <span class="nav-link text-sm group-hover:text-[#121214]">TikTok Profile (@lakshan.manohara6)</span>
+              </a>
+
+              <!-- Instagram -->
+              <a
+                href="https://www.instagram.com/lakshan.manohara6/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-3 group"
+                id="footer-instagram"
+                aria-label="Lakshan Manohara on Instagram"
+              >
+                <span class="social-icon-wrap">
+                  <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                  </svg>
+                </span>
+                <span class="nav-link text-sm group-hover:text-[#121214]">Instagram (@lakshan.manohara6)</span>
+              </a>
+
+              <!-- Direct WhatsApp -->
+              <a
+                href="https://wa.me/94788240084?text=Hi%20Lakshan!%20I%20visited%20your%20website%20and%20would%20like%20to%20inquire%20about%20a%20photoshoot."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-3 group"
+                id="footer-whatsapp"
+                aria-label="Lakshan Manohara on WhatsApp"
+              >
+                <span class="social-icon-wrap" style="color: #25D366; border-color: rgba(37,211,102,0.3);">
+                  <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+                  </svg>
+                </span>
+                <span class="nav-link text-sm group-hover:text-[#121214]">WhatsApp Inquiries</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer bottom bar -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-black/5">
+          <p class="text-xs" style="color: var(--color-text-muted);">
+            &copy; {new Date().getFullYear()} Lakshan Manohara Photography. All rights reserved.
+          </p>
+          <div class="flex items-center gap-4">
+            <p class="text-xs" style="color: var(--color-text-muted);">
+              "Beyond photos, we preserve the moments that matter."
+            </p>
+            <span class="text-black/15 hidden md:inline" aria-hidden="true">•</span>
+            <button
+              type="button"
+              id="footer-studio-btn"
+              class="text-[11px] text-[#8c8880]/70 hover:text-[#b38728] flex items-center gap-1.5 transition-colors cursor-pointer"
+              aria-label="Studio Portal"
+              title="Studio Portal (Alt+P)"
+            >
+              <svg class="w-3 h-3 opacity-60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/>
+                <path d="m14.31 8 5.74 9.94"/>
+                <path d="M9.69 8h11.48"/>
+                <path d="m7.38 12 5.74-9.94"/>
+              </svg>
+              <span>Studio Access</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ── Lenis Smooth Scroll Init ── -->
+    <script>
+      import Lenis from 'lenis';
+
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 0.8,
+        touchMultiplier: 2,
+        infinite: false,
+      });
+
+      function raf(time: number) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+
+      // Expose globally for other scripts
+      (window as any).__lenis = lenis;
+
+      // Global smooth-scroll for all anchor links
+      document.addEventListener('click', (e) => {
+        const target = (e.target as HTMLElement).closest('a');
+        if (!target) return;
+        const href = target.getAttribute('href');
+        if (href && href.startsWith('#') && href.length > 1) {
+          const el = document.querySelector(href) as HTMLElement | null;
+          if (el) {
+            e.preventDefault();
+            lenis.scrollTo(el, { offset: -64, duration: 1.1 });
+            history.pushState(null, '', href);
+          }
+        }
+      });
+    </script>
+
+    <!-- ── Navbar scroll shadow & mobile menu & studio triggers ── -->
+    <script>
+      const nav = document.getElementById('main-nav');
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      // Shadow on scroll
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (window.scrollY > 20) {
+            nav?.classList.add('shadow-lg');
+          } else {
+            nav?.classList.remove('shadow-lg');
+          }
+        },
+        { passive: true }
+      );
+
+      // Mobile hamburger toggle
+      mobileBtn?.addEventListener('click', () => {
+        const isOpen = mobileMenu?.getAttribute('aria-hidden') === 'false';
+        mobileMenu?.setAttribute('aria-hidden', String(isOpen));
+        mobileBtn?.setAttribute('aria-expanded', String(!isOpen));
+        if (mobileMenu) {
+          mobileMenu.style.maxHeight = isOpen ? '0' : `${mobileMenu.scrollHeight}px`;
+        }
+      });
+
+      // Close mobile drawer when clicking a link
+      document.querySelectorAll('.mobile-link').forEach((link) => {
+        link.addEventListener('click', () => {
+          mobileMenu?.setAttribute('aria-hidden', 'true');
+          mobileBtn?.setAttribute('aria-expanded', 'false');
+          if (mobileMenu) {
+            mobileMenu.style.maxHeight = '0';
+          }
+        });
+      });
+
+      // Studio Manager triggers (Discreet buttons for owner)
+      const triggerStudio = () => {
+        window.dispatchEvent(new CustomEvent('open-studio-manager'));
+      };
+
+      document.getElementById('nav-studio-btn')?.addEventListener('click', triggerStudio);
+      document.getElementById('footer-studio-btn')?.addEventListener('click', triggerStudio);
+      document.getElementById('mobile-studio-btn')?.addEventListener('click', () => {
+        if (mobileMenu) mobileMenu.style.maxHeight = '0';
+        mobileMenu?.setAttribute('aria-hidden', 'true');
+        mobileBtn?.setAttribute('aria-expanded', 'false');
+        triggerStudio();
+      });
+    </script>
+
+    <!-- ── Studio Manager Drawer (Accessible via Alt+P or /studio) ── -->
+    <StudioManager client:load />
+  </body>
+</html>
+
+<style>
+  .social-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid rgba(245, 245, 247, 0.1);
+    border-radius: 4px;
+    transition: border-color 0.25s, background-color 0.25s;
+    color: var(--color-text-muted);
+    flex-shrink: 0;
+  }
+
+  a:hover .social-icon-wrap {
+    border-color: var(--color-gold);
+    background-color: var(--color-gold-subtle);
+    color: var(--color-gold);
+  }
+
+  .social-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* Discreet Aperture Studio Trigger Button */
+  .nav-studio-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 9999px;
+    border: 1px solid rgba(18, 18, 20, 0.08);
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(8px);
+    color: #8c8880;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    outline: none;
+    flex-shrink: 0;
+  }
+
+  .nav-studio-trigger:hover {
+    color: #b38728;
+    border-color: rgba(179, 135, 40, 0.35);
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(179, 135, 40, 0.12);
+    transform: rotate(30deg);
+  }
+</style>
